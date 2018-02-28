@@ -1,11 +1,18 @@
 <template>
-  <div class="movie-scroller-box">
+  <div class="scroller-box">
     <header class="title-box clearfix">
       <h2 class="title-text fl">{{title}}</h2>
       <a href="javascript:;" class="title-more fr">更多</a>
     </header>
     <div class="movie-box">
-      <ul class="movie-list">
+      <ul class="movie-list" v-if="type=='movie'">
+        <li class="movie-item" v-for="item in items">
+          <img :src="item.images.small" :alt="item.alt" height="150" />
+          <p class="movie-item-title">{{item.title}}</p>
+          <rating :average="item.rating.average"></rating>
+        </li>
+      </ul>
+      <ul class="movie-list" v-else-if="type=='book'">
         <li class="movie-item" v-for="item in items">
           <img :src="item.images.small" :alt="item.alt" height="150" />
           <p class="movie-item-title">{{item.title}}</p>
@@ -18,19 +25,13 @@
 <script>
 import Rating from './Rating'
 export default {
-  name: 'MovieScroller',
-  props: ['title', 'items'],
-  components: { Rating },
-  data() {
-    return {
-
-    }
-  }
+  props: ['title', 'items', 'type'],
+  components: { Rating }
 }
 
 </script>
 <style scoped>
-.movie-scroller-box {
+.scroller-box {
   margin-top: 5px;
 }
 
@@ -57,6 +58,10 @@ export default {
 .movie-item-title {
   font-size: 16px;
   margin-top: 5px;
+  width: 115px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 </style>

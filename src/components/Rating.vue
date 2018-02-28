@@ -52,15 +52,7 @@
 </template>
 <script>
 export default {
-  name: 'Rating',
-  props: {
-    average: Number
-  },
-  data() {
-    return {
-
-    }
-  }
+  props: ['average']
 }
 
 </script>

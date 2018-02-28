@@ -1,41 +1,36 @@
 <template>
   <div class="nav-box">
     <h1 class="logo-box fl">
-      <a href="javascript:;" class="logo-link">
+      <router-link to="/" class="logo-link">
         <img src="../assets/images/logo.png" width="46" />
-      </a>
+      </router-link>
     </h1>
     <div class="search-box fr">
       <img src="../assets/images/search.png" width="24.5" />
     </div>
     <ul class="nav-list clearfix fr">
       <li class="nav-item fl">
-        <a href="javascript:;" class="nav-item-name movie">电影</a>
+        <router-link to="/movieView" class="nav-item-name movie">电影</router-link>
       </li>
       <li class="nav-item fl">
-        <a href="javascript:;" class="nav-item-name book">图书</a>
+        <router-link to="/bookView" class="nav-item-name book">图书</router-link>
       </li>
       <li class="nav-item fl">
-        <a href="javascript:;" class="nav-item-name broadcast">广播</a>
+        <router-link to="/cityView" class="nav-item-name city">同城</router-link>
       </li>
       <li class="nav-item fl">
-        <a href="javascript:;" class="nav-item-name group">小组</a>
+        <router-link to="/movieView" class="nav-item-name group">小组</router-link>
       </li>
     </ul>
   </div>
 </template>
 <script>
 export default {
-  name: 'Nav',
-  data() {
-    return {
 
-    }
-  }
 }
 
 </script>
-<style scoped>
+<style scoped lang="scss">
 @media screen and (max-width: 650px) {
   .nav-box {
     width: 100%;
@@ -75,22 +70,21 @@ export default {
 .nav-item {
   font-size: 15px;
   margin-right: 19px;
-}
+  .book {
+    color: #9F7860;
+  }
 
-.movie {
-  color: #2384E8;
-}
+  .city {
+    color: #E4A813;
+  }
 
-.book {
-  color: #9F7860;
-}
+  .group {
+    color: #2AB8CC;
+  }
 
-.broadcast {
-  color: #E4A813;
-}
-
-.group {
-  color: #2AB8CC;
+  .movie {
+    color: #2384E8;
+  }
 }
 
 </style>

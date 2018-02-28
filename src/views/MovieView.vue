@@ -2,9 +2,9 @@
   <div class="page">
     <nav-main></nav-main>
     <div class="content">
-      <movie-scroller title="影院热映" :items="hotList"></movie-scroller>
-      <movie-scroller title="即将上映" :items="soonList"></movie-scroller>
-      <movie-scroller title="Top250" :items="topList"></movie-scroller>
+      <scroller type="movie" title="影院热映" :items="hotList"></scroller>
+      <scroller type="movie" title="即将上映" :items="soonList"></scroller>
+      <scroller type="movie" title="Top250" :items="topList"></scroller>
     </div>
   </div>
 </template>
@@ -12,10 +12,9 @@
 import axios from 'axios'
 import NavMain from '@/components/NavMain'
 import Rating from '@/components/Rating'
-import MovieScroller from '@/components/MovieScroller'
+import Scroller from '@/components/Scroller'
 export default {
-  name: 'Movie',
-  components: { NavMain, MovieScroller, Rating },
+  components: { NavMain, Scroller, Rating },
   data() {
     return {
       hotList: [],
@@ -24,38 +23,33 @@ export default {
     }
   },
   created() {
-    this.loadData();
+    axios.get('/api/v2/movie/in_theaters', { //影院热映
+        params: {
+          count: 8
+        }
+      })
+      .then(res => {
+        this.hotList = res.data.subjects;
+      })
+    axios.get('/api/v2/movie/coming_soon', { //即将上映
+        params: {
+          count: 8
+        }
+      })
+      .then(res => {
+        this.soonList = res.data.subjects;
+      })
+    axios.get('/api/v2/movie/top250', { //Top250
+        params: {
+          count: 8
+        }
+      })
+      .then(res => {
+        this.topList = res.data.subjects;
+      })
   },
   methods: {
-    loadData() {
-      axios.get('/api/v2/movie/in_theaters', { //影院热映
-          params: {
-            count: 8
-          }
-        })
-        .then(res => {
-          this.hotList = res.data.subjects;
-        })
 
-      axios.get('/api/v2/movie/coming_soon', { //即将上映
-          params: {
-            count: 8
-          }
-        })
-        .then(res => {
-          this.soonList = res.data.subjects;
-        })
-
-      axios.get('/api/v2/movie/top250', { //Top250
-          params: {
-            count: 8
-          }
-        })
-        .then(res => {
-          this.topList = res.data.subjects;
-        })
-
-    }
   }
 }
 

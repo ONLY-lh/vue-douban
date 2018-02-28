@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="page">
     <nav-main></nav-main>
-    <div class="page">
+    <div>
       <ul class="quicknav-list clearfix">
         <li class="quicknav-item fl">
           <a href="javascript:;">影院热映</a>
@@ -46,6 +46,7 @@ export default {
   padding: 3px;
   font-size: 15px;
   box-sizing: border-box;
+  text-align: center;
 }
 
 .quicknav-item>a {
